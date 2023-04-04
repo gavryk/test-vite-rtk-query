@@ -1,23 +1,23 @@
-import { useEffect } from 'react';
 import { ReciepItem, User } from './components';
 import { useGetRecipesQuery } from './store/api/api';
-import { Header } from './widget';
+import { CreateRecipe, Header } from './widget';
 
 function App() {
 	const { isLoading, data } = useGetRecipesQuery();
-
-	useEffect(() => {
-		console.log(data);
-	}, []);
 
 	return (
 		<section className="App">
 			<Header />
 			<User />
+			<CreateRecipe />
 			<div className="recipies">
-				<ReciepItem id={1} name="Lazania" />
-				<ReciepItem id={2} name="Pasta" />
-				<ReciepItem id={3} name="Bulyon" />
+				{isLoading ? (
+					<h1>Loading...</h1>
+				) : data ? (
+					data.map((item: any) => <ReciepItem key={item.id} {...item} />)
+				) : (
+					<h1>Not Found</h1>
+				)}
 			</div>
 		</section>
 	);
