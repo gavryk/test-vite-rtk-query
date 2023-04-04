@@ -1,7 +1,15 @@
+import { useEffect } from 'react';
 import { ReciepItem, User } from './components';
+import { useGetRecipesQuery } from './store/api/api';
 import { Header } from './widget';
 
 function App() {
+	const { isLoading, data } = useGetRecipesQuery();
+
+	useEffect(() => {
+		console.log(data);
+	}, []);
+
 	return (
 		<section className="App">
 			<Header />
