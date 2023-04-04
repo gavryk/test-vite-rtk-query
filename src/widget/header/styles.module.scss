@@ -1,0 +1,22 @@
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: end;
+	padding: 10px 10px;
+	position: relative;
+}
+
+.favCount {
+	font-size: 10px;
+	background-color: #28b8db;
+	border-radius: 10px;
+	width: 12px;
+	height: 12px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding: 7px;
+	position: absolute;
+	top: 20px;
+	right: 22px;
+}
