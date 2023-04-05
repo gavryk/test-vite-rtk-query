@@ -3,9 +3,9 @@ import favorites from './favorites/slice';
 import user from './user/slice';
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { createLoger } from 'redux-logger';
+import { createLogger } from 'redux-logger';
 
-const logger = createLoger({
+const logger = createLogger({
 	collapsed: true,
 });
 
