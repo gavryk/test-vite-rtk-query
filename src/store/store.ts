@@ -3,7 +3,7 @@ import favorites from './favorites/slice';
 import user from './user/slice';
 import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
-import { createLogger } from 'redux-logger';
+// import { createLogger } from 'redux-logger';
 
 // const logger = createLogger({
 // 	collapsed: true,

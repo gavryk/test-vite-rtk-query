@@ -1,14 +1,15 @@
-import React, { useState } from 'react';
+import React, { FormEvent, useState } from 'react';
 import { useCreateRecipeMutation } from '../../../store/api/recipe.api';
+import { IRecipeData } from '../../../types/recipe.types';
 
 export const CreateRecipe: React.FC = () => {
-	const [recipe, setRecipe] = useState({
+	const [recipe, setRecipe] = useState<IRecipeData>({
 		name: '',
 		image: '',
 	});
 	const [createRecipe] = useCreateRecipeMutation();
 
-	const handleSubmit = (e: React.SyntheticEvent) => {
+	const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
 		e.preventDefault();
 		createRecipe(recipe).then(() => {
 			setRecipe({

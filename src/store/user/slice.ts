@@ -1,22 +1,11 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { getUserById } from './asyncUserActions';
+import { IUser, IUserState } from '../../types/user.types';
 
-interface userSliceProp {
-	isLoading: boolean;
-	error: string | null;
-	user: {
-		id: number | string;
-		name: string;
-	};
-}
-
-const initialState: userSliceProp = {
+const initialState: IUserState = {
 	isLoading: false,
 	error: null,
-	user: {
-		id: '',
-		name: '',
-	},
+	user: {} as IUser,
 };
 
 export const userSlice = createSlice({
@@ -27,14 +16,14 @@ export const userSlice = createSlice({
 		builder.addCase(getUserById.pending, (state) => {
 			state.isLoading = true;
 		});
-		builder.addCase(getUserById.fulfilled, (state, action) => {
-			state.user = action.payload as any;
+		builder.addCase(getUserById.fulfilled, (state, action: PayloadAction<IUser>) => {
+			state.user = action.payload;
 			state.isLoading = false;
 		});
-		builder.addCase(getUserById.rejected, (state, action) => {
+		builder.addCase(getUserById.rejected, (state, action: any) => {
 			state.isLoading = false;
-			state.error = action.payload as any;
-			state.user = { id: '', name: '' };
+			state.error = action.payload;
+			state.user = {} as IUser;
 		});
 	},
 });

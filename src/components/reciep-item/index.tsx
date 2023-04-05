@@ -1,22 +1,15 @@
 import React from 'react';
 import styles from './styles.module.scss';
-import { useSelector } from 'react-redux';
-import { favoritesSelector } from '../../store/favorites/selector';
 import { useAppDispatch } from '../../store/store';
 import { toggleFavorites } from '../../store/favorites/slice';
 import { useFavorites } from '../../hooks';
+import { IRecipe } from '../../types/recipe.types';
 
-type ReciepProp = {
-	id: number;
-	name: string;
-	image?: string;
-};
-
-export const ReciepItem: React.FC<ReciepProp> = ({ id, name, image }) => {
+export const ReciepItem: React.FC<IRecipe> = ({ id, name, image }) => {
 	const dispatch = useAppDispatch();
 	const { favorites } = useFavorites();
 
-	const isExist = favorites.some((item: ReciepProp) => item.id === id);
+	const isExist = favorites.some((item: IRecipe) => item.id === id);
 
 	const favoriteHandle = (id: number) => {
 		dispatch(toggleFavorites({ id, name, image }));
