@@ -5,14 +5,15 @@ export const api = createApi({
 	reducerPath: 'api',
 	tagTypes: ['Recipe'],
 	baseQuery: fetchBaseQuery({
-		baseUrl: `${import.meta.env.VITE_BASE_URL}/recipes?_sort=id&_order=desc`,
+		baseUrl: `${import.meta.env.VITE_BASE_URL}/recipes`,
 	}),
 	endpoints: (builder) => ({
-		getRecipes: builder.query<IRecipe[], null>({
-			query: () => '/',
-			providesTags: () => [
+		getRecipes: builder.query<IRecipe[], string>({
+			query: (searchTerm) => `/?_sort=id&_order=desc&q=${searchTerm}`,
+			providesTags: (result, error, searchTerm) => [
 				{
 					type: 'Recipe',
+					id: searchTerm,
 				},
 			],
 		}),
