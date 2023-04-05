@@ -2,8 +2,12 @@ import { ReciepItem, User } from './components';
 import { useGetRecipesQuery } from './store/api/api';
 import { CreateRecipe, Header } from './widget';
 
+const userId = 1;
+
 function App() {
-	const { isLoading, data } = useGetRecipesQuery();
+	const { isLoading, data } = useGetRecipesQuery(undefined, {
+		skip: !userId,
+	});
 
 	return (
 		<section className="App">
