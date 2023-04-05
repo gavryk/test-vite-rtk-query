@@ -5,9 +5,9 @@ import { configureStore } from '@reduxjs/toolkit';
 import { useDispatch } from 'react-redux';
 import { createLogger } from 'redux-logger';
 
-const logger = createLogger({
-	collapsed: true,
-});
+// const logger = createLogger({
+// 	collapsed: true,
+// });
 
 export const store = configureStore({
 	reducer: {
